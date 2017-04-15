@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../artTemplate/template-native-debug.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="dv"></div>
+    <script type="text/template" id="tpl">
+        <h3><%= '张三' %></h3>
+        <p><%= desc %></p>
+    </script>
+</body>
+<script>
+    var html = template( 'tpl', {
+        desc: '我是一个由对象提供的数据'
+    } );
+
+    document.getElementById( 'dv' ).innerHTML = html;
+</script>
+</html>

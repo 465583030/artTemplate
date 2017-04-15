@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../artTemplate/template-native-debug.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 这里的 div 就是一个 容器, 用于存放用户信息 -->
+    <div id="dv"></div>
+
+    <!-- 定义模板 -->
+    <script type="text/template" id="tpl">
+        <div>
+            <!-- 标准的 分支语句 -->
+            <!-- 
+            <% if ( img == null ) { %>
+                <img src="./images/defaultHeader.jpg">
+            <% } else { %>
+                <img src="<%= img %>">
+            <% } %>
+            -->
+
+            <!-- 采用三目运算符 ? : -->
+            <div style="border: 2px dashed red; width: 200px; height: 200px; overflow:hidden;">
+                <img src="<%= img || './images/defaultHeader.jpg' %>" alt="">
+            </div>
+        </div>
+        <p4>
+            <%= name %>
+        </p4>
+    </script>
+</body>
+<script>
+    var user = {
+        name: '薛定谔的猫',
+        img: './images/header.jpg'
+    };
+
+    var html = template('tpl', user);
+
+    document.getElementById('dv').innerHTML = html;
+</script>
+
+</html>

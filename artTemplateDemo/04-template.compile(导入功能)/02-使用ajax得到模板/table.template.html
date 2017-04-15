@@ -1,0 +1,16 @@
+<table class="table table-bordered table-hover">
+    <thead>
+        {{ each headers }}
+        <th>{{ $value }}</th>
+        {{ /each }}
+    </thead>
+    <tbody>
+        {{ each list as item }}
+        <tr>
+            {{ each item }}
+                <td>{{ $value }}</td>
+            {{ /each }}
+        </tr>
+        {{ /each }}
+    </tbody>
+</table>

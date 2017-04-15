@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../../artTemplate/template.js"></script>
+</head>
+<body>
+    <div id="dv"></div>
+    <script>
+        var tmp = '<ul>{{ each list }} <li>{{ $value }}</li> {{ /each }}</ul>';
+        
+
+        // 四种处理办法
+        // 1, + 连接字符串( 常规 )
+        // var tmp = '<ul>' +
+        //           ' {{ each list }}' + 
+        //           '     <li>{{ $value }}</li>' +
+        //           ' {{ /each }}' +
+        //           ' </ul>';
+        
+
+        // 2, 使用 += 的方式
+        // var tmp = '<ul>';
+        //     tmp +=' {{ each list }}';
+        //     tmp +='     <li>{{ $value }}</li>';
+        //     tmp +=' {{ /each }}';
+        //     tmp +=' </ul>';
+
+
+        // 3, 使用 可换行字符串( 1> 使用传统的 c 语法, 结尾处加上 \ )
+        // var tmp = ' <ul>                                        \
+        //                 {{ each list }}                         \
+        //                     <li>{{ $value }}</li>               \
+        //                 {{ /each }}                             \
+        //             </ul> ';
+
+        // 2> ES6 给出了可换行字符串的语法( `  ` )
+        // var tmp = `
+        //         <ul>
+        //             {{ each list }}
+        //                 <li> {{ $value }} </li>
+        //             {{ /each }}
+        //         </ul>
+        // `;
+
+        var obj = {
+            list: '首页,关于没我们,新闻,咨询,xxx,yyy,aaa,bbb'.split( ',' )
+        };
+
+        var render = template.compile( tmp );
+        var html = render( obj );
+
+        document.getElementById( 'dv' ).innerHTML = html;
+    </script>
+</body>
+
+</html>

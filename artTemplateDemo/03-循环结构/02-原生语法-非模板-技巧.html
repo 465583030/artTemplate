@@ -1,0 +1,77 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dv"></div>
+</body>
+<script>
+    var data = [{
+        name: 'jim',
+        age: 19,
+        gender: '男'
+    }, {
+        name: 'tom',
+        age: 29,
+        gender: '女'
+    }, {
+        name: 'jack',
+        age: 39,
+        gender: '女'
+    }, {
+        name: 'clack',
+        age: 49,
+        gender: '女'
+    }, {
+        name: 'baby',
+        age: 59,
+        gender: '男'
+    }];
+
+    // 考虑 table 要多么复杂
+    // 1. 创建 table
+    // 2. 创建 tbody 与 thead
+    // 3. 遍历一个数据项, 取出里面的每一个 key 的名字, 作为标题, 即 th
+    // 4. 遍历数组的每一项数据, 生成 tr 与 td
+    // 5. 将 dom 元素加到页面中
+
+    // ES5 中引入的新方法
+    // 数组.map( 回调函数( v, i ) ) -> 新数组
+    // Object.keys( 对象 ) -> 数组   
+    // Object.values( 对象 ) -> 数组
+
+
+    // 简单一点
+    // 方法1: 字符串拼接篇
+    var table = [];
+    table.push('<table border="1" width="600"><thead>');
+
+    Array.prototype.push.apply(table, Object.keys(data[0]).map(function (v) {
+        return '<th>' + v + '</th>';
+    }));
+
+    table.push('</thead><tbody>');
+
+    Array.prototype.push.apply(table, data.map(function (item) {
+        return '<tr><td>' +
+            Object.values(item).join('</td><td>') +
+            '</td></tr>';
+    }));
+
+    table.push('</tbody></table>');
+
+
+    document.getElementById('dv').innerHTML = table.join('');
+
+    // 方法2 使用 jquery( map, each )
+    // $( html 格式的字符串 ).appendTo( '#dv' )
+
+</script>
+
+</html>

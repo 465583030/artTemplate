@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div id="dv"></div>
+    <script src="../../../artTemplate/template.js"></script>
+    <script>
+        // 由于模板与数据都是一个 文件, 因此需要使用 ajax 请求该数据
+
+        // 1> 创建 请求使用的对象
+        var xhr = new XMLHttpRequest;
+        var data;
+        // 2> open 设置请求的路径与方式
+        xhr.open( 'GET', './data.json' );
+
+        // 3> 配置回调函数( 事件 )
+        xhr.onreadystatechange = function () {
+            if ( xhr.readyState == 4 && xhr.status == 200 ) {
+
+                // 拿到了 数据
+                // console.log( JSON.parse( xhr.responseText ) );
+                // console.log( xhr.responseText );
+                data = JSON.parse( xhr.responseText );
+                // 在此处要获得 模板
+                // 又要请求一次
+                xhr.open( 'GET', './table.template.html' );
+                xhr.onreadystatechange = function () {
+                    if ( xhr.readyState == 4 && xhr.status == 200 ) {
+                        // 请求的是模板
+                        console.log( xhr.responseText );
+
+                        // 既有数据又有模板字符串
+                        var html = template.compile( xhr.responseText )( data );
+
+                        document.querySelectorAll( '#dv' )[ 0 ].innerHTML = html;
+
+                    }
+                };
+                xhr.send();
+            }
+        };
+        // 4> 发送数据
+        xhr.send();
+
+
+
+
+    </script>
+</body>
+</html>

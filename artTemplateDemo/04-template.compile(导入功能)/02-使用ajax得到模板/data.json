@@ -1,0 +1,24 @@
+{
+    "headers": ["name", "age", "gender"],
+    "list": [{
+        "name": "jim",
+        "age": 19,
+        "gender": "男"
+    }, {
+        "name": "tom",
+        "age": 29,
+        "gender": "女"
+    }, {
+        "name": "jack",
+        "age": 39,
+        "gender": "女"
+    }, {
+        "name": "clack",
+        "age": 49,
+        "gender": "女"
+    }, {
+        "name": "baby",
+        "age": 59,
+        "gender": "男"
+    }]
+}
